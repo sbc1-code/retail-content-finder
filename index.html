@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f5f3ee">
+  <meta name="description" content="An independent retail help-content sample with a searchable guide finder and a companion editorial QA view.">
+  <title>Retail Content Finder | Independent sample</title>
+  <link rel="stylesheet" href="styles.css">
+  <script type="module" src="app.mjs"></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="#browse" aria-label="Retail Content Finder home"><span class="brand-mark" aria-hidden="true">✳</span><span>fieldguide<span class="brand-dot">.</span></span></a>
+      <nav aria-label="Primary">
+        <a href="#browse" id="browse-nav">Find help</a>
+        <a href="#qa" id="qa-nav">Content QA <span class="qa-count" id="nav-issue-count"></span></a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <div class="sample-banner"><span class="sample-pill">Portfolio sample</span><span>Fictional retail content. Independent work; no retailer or Robert Half affiliation.</span></div>
+    <section id="browse-view" class="view" aria-labelledby="hero-title">
+      <div class="hero">
+        <div class="hero-copy">
+          <p class="eyebrow">PRODUCT HELP, MADE FINDABLE</p>
+          <h1 id="hero-title" tabindex="-1">What can we help you <em>figure out?</em></h1>
+          <p class="hero-description">Clear answers for the products you use at home. Find a guide by product, task, or problem, then get straight to the steps.</p>
+          <div class="search-panel">
+            <label for="search">Search help guides</label>
+            <div class="search-wrap"><span aria-hidden="true" class="search-icon">⌕</span><input id="search" type="search" placeholder="Try “blender leak” or “filter”" autocomplete="off"><kbd aria-hidden="true">/</kbd></div>
+          </div>
+          <p class="hero-note">Short guides. Practical checks. No account needed.</p>
+        </div>
+        <div class="hero-art" aria-hidden="true"><div class="art-card art-card-one">01 <span>Find a product</span></div><div class="art-card art-card-two">02 <span>Check the cause</span></div><div class="art-card art-card-three">03 <span>Take the next step</span></div></div>
+      </div>
+      <div class="catalog-shell">
+        <div class="catalog-heading"><div><p class="eyebrow">THE GUIDE LIBRARY</p><h2>Browse useful answers</h2></div><p id="result-count" role="status" aria-live="polite"></p></div>
+        <div class="filter-row"><div class="filter-field"><label for="category">Product area</label><select id="category"><option>All</option></select></div><div class="filter-field"><label for="task">What you need</label><select id="task"><option>All</option></select></div><button type="button" id="clear-filters" class="clear-button">Clear filters</button></div>
+        <div id="cards" class="cards"></div>
+        <div id="empty-state" class="empty-state" hidden><span aria-hidden="true">⌕</span><h3>No guide matched that search.</h3><p>Try a product name such as “kettle,” or clear the filters.</p><button type="button" id="empty-clear">Show all guides</button></div>
+      </div>
+    </section>
+
+    <section id="guide-view" class="view guide-view" hidden aria-labelledby="guide-title"><a class="back-link" href="#browse">← Back to all guides</a><div id="guide-content"></div></section>
+
+    <section id="qa-view" class="view qa-view" hidden aria-labelledby="qa-title">
+      <div class="qa-hero"><p class="eyebrow">COMPANION EDITORIAL VIEW</p><h1 id="qa-title" tabindex="-1">Content quality, in one pass.</h1><p>Review release blockers before a draft reaches visitors. This sample checks search descriptions, image text, and links to published guides.</p></div>
+      <div id="qa-summary" class="qa-summary"></div>
+      <div class="qa-toolbar"><h2>Issue queue</h2><div class="filter-field"><label for="qa-filter">Show</label><select id="qa-filter"><option value="All">All checks</option><option value="Metadata">Metadata</option><option value="Image description">Image descriptions</option><option value="Internal link">Internal links</option></select></div></div>
+      <div id="qa-issues" class="qa-issues"></div>
+      <p class="qa-explainer">The intentionally incomplete draft demonstrates the checks. Published guides are shown in the visitor finder; drafts stay out until issues are resolved.</p>
+    </section>
+  </main>
+  <footer><div><strong>fieldguide<span class="brand-dot">.</span></strong><p>An independent sample of retail help content and editorial QA.</p></div><a href="#qa">See the QA view →</a></footer>
+</body>
+</html>
