@@ -4,6 +4,7 @@ import { searchArticles, auditArticles } from "./lib.mjs";
 const $ = (selector) => document.querySelector(selector);
 const byId = new Map(articles.map((article) => [article.id, article]));
 const issues = auditArticles(articles);
+let focusSearchAfterRoute = false;
 const escapeHtml = (value) => String(value).replace(/[&<>"']/g, (char) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[char]);
 
 function populateFilters() {
@@ -68,6 +69,7 @@ function route() {
   if (view === "qa") renderQa();
   if (view === "browse") renderCards();
   if (location.hash) { window.scrollTo({ top: 0 }); $(`#${view === "guide" ? "guide-title" : view === "qa" ? "qa-title" : "hero-title"}`).focus({ preventScroll: true }); }
+  if (view === "browse" && focusSearchAfterRoute) { $("#search").focus(); focusSearchAfterRoute = false; }
 }
 
 populateFilters();
@@ -79,6 +81,6 @@ $("#qa-filter").addEventListener("change", renderQa);
 function clearFilters() { $("#search").value = ""; $("#category").value = "All"; $("#task").value = "All"; renderCards(); $("#search").focus(); }
 $("#clear-filters").addEventListener("click", clearFilters);
 $("#empty-clear").addEventListener("click", clearFilters);
-document.addEventListener("keydown", (event) => { if (event.key === "/" && !["INPUT", "TEXTAREA", "SELECT"].includes(document.activeElement.tagName)) { event.preventDefault(); location.hash = "browse"; route(); $("#search").focus(); } });
+document.addEventListener("keydown", (event) => { if (event.key === "/" && !["INPUT", "TEXTAREA", "SELECT"].includes(document.activeElement.tagName)) { event.preventDefault(); focusSearchAfterRoute = true; if (location.hash === "#browse") route(); else location.hash = "browse"; } });
 window.addEventListener("hashchange", route);
 route();
